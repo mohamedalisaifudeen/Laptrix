@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    {% block head%} {{ super() }} {% endblock %}
+</head>
+<body>
+    {% block navigation %} {{ super() }} {% endblock %}
+
+    {% block body%}
+
+        <form action="{{url_for('adding')}}" method="post">
+                <div id="titl">
+    <h1 class="title">ADD NEW PLACESES</h1>
+    <p class="discrip">Let freelancers, digital nomads, and other remote workers know about a new work-friendly venue!</p>
+    </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label  lb1">Name of the place</label>
+    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Location of the place</label>
+    <input type="text" name='place' class="form-control" id="exampleInputPassword1">
+  </div>
+
+              <div class="mb-3">
+    <label for="exampleprice" class="form-label">Price of the cofee</label>
+    <input type="text" name='price' class="form-control" id="exampleprice">
+  </div>
+                          <div class="mb-3">
+    <label for="examplepric" class="form-label">Image url</label>
+    <input type="text" name='image' class="form-control" id="examplepric">
+  </div>
+            <label for="form-select" class="form-label">Number of seats</label>
+            <select class="form-select" name="seats" id="form-select" aria-label="Default select example" name="option">
+
+  <option value="10+">10+</option>
+  <option value="25+">25+</option>
+
+</select>
+
+                        <label for="socket" class="form-label">Socket </label>
+            <select class="form-select" name="socket" id="socket" aria-label="Default select example" name="option">
+
+  <option value="true">True</option>
+  <option value="false">False</option>
+
+</select>
+
+                        <label for="toilet" class="form-label">Toilet</label>
+            <select class="form-select" name="toilet" id="toilet" aria-label="Default select example" name="option">
+
+  <option value="true">True</option>
+  <option value="false">False</option>
+
+</select>
+
+                        <label for="wifi" class="form-label">Wifi</label>
+            <select class="form-select" name="wifi" id="wifi" aria-label="Default select example" name="option">
+
+  <option value="true">True</option>
+  <option value="false">False</option>
+
+</select>
+
+              <label for="calls" class="form-label">Take calls</label>
+            <select class="form-select" name='calls' id="calls" aria-label="Default select example" name="option">
+
+  <option value="true">True</option>
+  <option value="false">False</option>
+</select>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+    {% endblock %}
+</body>
+</html>
