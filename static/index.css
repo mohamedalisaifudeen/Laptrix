@@ -40,9 +40,9 @@ iframe{margin-top:40;
 .lb1{margin-top:0;}
 
 
-span{visibility:hidden;}
 
-p{font-family:'Ubuntu'
+
+p{font-family:'Ubuntu';
     font-weight:400;}
 
 form{margin:0 auto;
@@ -53,3 +53,28 @@ label{margin-top:26px;}
 button{margin-top:3rem;
         margin-bottom:3rem;
         width:100%;}
+/* Compact card styling */
+.custom-card {
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-img-left {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps image proportional */
+  max-height: 150px; /* Restricts card height */
+}
+
+.info-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.card-body {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}

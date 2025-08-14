@@ -12,24 +12,34 @@
         <h1>London</h1>
         <p>The best work and study-friendly cafes, restaurants, and hotel lobbies in London. Find venues <br>with free and reliable Wi-Fi hotspots, ample power sockets, and comfy seating areas.</p>
         <h2> {{ data|length }} WORK-FRIENDLY PLACES</h2>
-    {% for item in data%}
-        <div class="card mb-3" style="max-width: 540px;">
+{% for item in data %}
+<div class="card mb-3 custom-card shadow-sm">
   <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{item.img_url}}" class="img-fluid rounded-start" alt="...">
+    <div class="col-4">
+      <img src="{{item.img_url}}" class="card-img-left" alt="{{item.name}}">
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
+    <div class="col-8">
+      <div class="card-body p-2">
         <h6 class="card-title">{{item.name}}</h6>
-        <i class="fa-sharp fa-solid fa-location-dot" style="color: #ca2f37;"> </i><p class="card-text">{{item.location}}</p><br>
-          <i class="fa-solid fa-chair" style="color: #795016;"></i> <p class="card-text ">  Seats {{item.seats}} </p><br>
-          <i class="fa-solid fa-tag" style="color: #d4d80e;"></i> <p class="card-text">Cofee price {{item.coffee_price}}</p>
-        <br><p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <div class="info-line">
+          <i class="fa-sharp fa-solid fa-location-dot" style="color: #ca2f37;"></i>
+          <span>{{item.location}}</span>
+        </div>
+        <div class="info-line">
+          <i class="fa-solid fa-chair" style="color: #795016;"></i>
+          <span>Seats {{item.seats}}</span>
+        </div>
+        <div class="info-line">
+          <i class="fa-solid fa-tag" style="color: #d4d80e;"></i>
+          <span>Coffee price {{item.coffee_price}}</span>
+        </div>
+        <small class="text-muted">Last updated 3 mins ago</small>
       </div>
     </div>
   </div>
 </div>
-        {% endfor %}
+{% endfor %}
+
 
     </div>
 

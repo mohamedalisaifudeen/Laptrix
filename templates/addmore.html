@@ -20,16 +20,16 @@
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Location of the place</label>
-    <input type="text" name='place' class="form-control" id="exampleInputPassword1">
+    <input type="text" name='place' class="form-control" id="exampleInputPassword1" required>
   </div>
 
               <div class="mb-3">
     <label for="exampleprice" class="form-label">Price of the cofee</label>
-    <input type="text" name='price' class="form-control" id="exampleprice">
+    <input type="text" name='price' class="form-control" id="exampleprice" required>
   </div>
                           <div class="mb-3">
     <label for="examplepric" class="form-label">Image url</label>
-    <input type="text" name='image' class="form-control" id="examplepric">
+    <input type="text" name='image' class="form-control" id="examplepric" required>
   </div>
             <label for="form-select" class="form-label">Number of seats</label>
             <select class="form-select" name="seats" id="form-select" aria-label="Default select example" name="option">
@@ -69,7 +69,9 @@
   <option value="true">True</option>
   <option value="false">False</option>
 </select>
-
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
   <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>

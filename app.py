@@ -3,10 +3,10 @@ from flask import Flask,render_template,request,redirect,url_for
 import folium
 from flask_sqlalchemy import SQLAlchemy
 from geopy.geocoders import  Nominatim
+import ssl
+import certifi
 
-
-
-asd=r'C:\Users\User\Desktop\Web Development1\cafe\cafes .db'
+asd=r'/Users/mohamedali/Desktop/Folder/laptrix/Laptrix/cafes .db'
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']="sqlite:///"+asd
@@ -28,7 +28,7 @@ class cafe(db.Model):
     seats=db.Column(db.String(100),nullable=False)
     coffee_price=db.Column(db.String(100),nullable=False)
 
-
+location_cache = {}
 
 @app.route('/')
 def home_page():
@@ -36,11 +36,18 @@ def home_page():
     m=folium.Map(location=[51.5072,0.1276])
 
 
-    geolocator=Nominatim(user_agent='Cafe Shops')
+    ssl_context = ssl.create_default_context(cafile=certifi.where())
+    geolocator = Nominatim(
+        user_agent='Cafe Shops',ssl_context=ssl_context,timeout=10)
+
 
     for item in data:
-        location=geolocator.geocode(item.location)
-        folium.Marker(location=[location.latitude, location.longitude], popup=item.name, icon=folium.Icon(color='blue')).add_to(m)
+        if item.location not in location_cache:
+            loc = geolocator.geocode(item.location)
+            if loc:
+                location_cache[item.location] = (loc.latitude, loc.longitude)
+        lat, lon = location_cache[item.location]
+        folium.Marker(location=[lat, lon], popup=item.name, icon=folium.Icon(color='blue')).add_to(m)
 
     map = m.get_root()._repr_html_()
     return render_template('index.html',data=data,map=map)
@@ -58,7 +65,9 @@ def adding():
         wifi=request.form['wifi']
         calls=request.form['calls']
         image=request.form['image']
-
+        if not all([name, place, price, image]):
+            error_msg = "Please fill in all required fields!"
+            return render_template('addmore.html', error=error_msg)
         dt=cafe(name=name,map_url='none',img_url=image,has_sockets=socket,has_toilet=toilet,has_wifi=wifi,can_take_calls=calls,seats=seats,coffee_price=price,location=place)
         db.session.add(dt)
         db.session.commit()
